@@ -63,7 +63,7 @@ const Organization = (props) => {
     }))(Badge);
 
     const renderMainContent = () => {
-        if (!this.props.isLoaded) {
+        if (!props.isLoaded) {
             return (
                 <Container className={classes.root} maxWidth="sm">
                     <Typography>Loading...</Typography>
