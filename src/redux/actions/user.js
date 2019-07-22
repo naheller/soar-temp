@@ -8,7 +8,7 @@ import {
 export const getLoggedInUser = () => dispatch => {
     dispatch({ type: GET_USER_LOADING });
 
-    axios.get('/api/users/profile')
+    axios.get('https://soar-service.herokuapp.com/api/users/profile')
         .then(res => {
             dispatch({
                 type: GET_USER_SUCCESS,

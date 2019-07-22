@@ -10,7 +10,7 @@ import {
 export const getOrganizations = () => dispatch => {
     dispatch({ type: GET_ORGS_LOADING });
 
-    axios.get('/api/organizations/')
+    axios.get('https://soar-service.herokuapp.com/api/organizations/')
         .then(res => {
             dispatch({
                 type: GET_ORGS_SUCCESS,
@@ -28,7 +28,7 @@ export const getOrganizations = () => dispatch => {
 export const getOrganization = orgId => dispatch => {
     dispatch({ type: GET_ORG_LOADING });
 
-    axios.get(`/api/organizations/${orgId}`)
+    axios.get(`https://soar-service.herokuapp.com/api/organizations/${orgId}`)
         .then(res => {
             dispatch({
                 type: GET_ORG_SUCCESS,
@@ -46,7 +46,7 @@ export const getOrganization = orgId => dispatch => {
 export const createOrganization = org => dispatch => {
     dispatch({ type: CREATE_ORG_LOADING });
 
-    axios.post(`/api/organizations/create/`, { ...org })
+    axios.post(`https://soar-service.herokuapp.com/api/organizations/create/`, { ...org })
         .then(res => {
             dispatch({
                 type: CREATE_ORG_SUCCESS,
@@ -64,7 +64,7 @@ export const createOrganization = org => dispatch => {
 export const editOrganization = (orgId, updates) => dispatch => {
     dispatch({ type: EDIT_ORG_LOADING });
 
-    axios.put(`/api/organizations/${orgId}`, { ...updates })
+    axios.put(`https://soar-service.herokuapp.com/api/organizations/${orgId}`, { ...updates })
         .then(res => {
             dispatch({
                 type: EDIT_ORG_SUCCESS,
@@ -82,7 +82,7 @@ export const editOrganization = (orgId, updates) => dispatch => {
 export const deleteOrganization = orgId => dispatch => {
     dispatch({ type: DELETE_ORG_LOADING });
 
-    axios.delete(`/api/organizations/${orgId}`)
+    axios.delete(`https://soar-service.herokuapp.com/api/organizations/${orgId}`)
         .then(() => {
             dispatch({ type: DELETE_ORG_SUCCESS });
         })
