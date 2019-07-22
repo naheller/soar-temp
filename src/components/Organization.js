@@ -62,48 +62,58 @@ const Organization = (props) => {
         }
     }))(Badge);
 
-    const renderMainContent = () => (
-        <Container className={classes.root} maxWidth="sm">
-            <StyledBadge badgeContent={props.organization.category} color="primary">
+    const renderMainContent = () => {
+        if (!this.props.isLoaded) {
+            return (
+                <Container className={classes.root} maxWidth="sm">
+                    <Typography>Loading...</Typography>
+                </Container>
+            )
+        }
+
+        return (
+            <Container className={classes.root} maxWidth="sm">
+                <StyledBadge badgeContent={props.organization.category} color="primary">
+                    <Paper className={classes.paper}>
+                        <Typography variant="h5">{props.organization.name}</Typography>
+                        {
+                            props.organization.description !== '' &&
+                            <Fragment>
+                                <Divider className={classes.divider} />
+                                <Typography align="justify" className={classes.orgDescription}>
+                                    {props.organization.description}
+                                </Typography>
+                            </Fragment>
+                        }
+                    </Paper>
+                </StyledBadge>
                 <Paper className={classes.paper}>
-                    <Typography variant="h5">{props.organization.name}</Typography>
-                    {
-                        props.organization.description !== '' &&
-                        <Fragment>
-                            <Divider className={classes.divider} />
-                            <Typography align="justify" className={classes.orgDescription}>
-                                {props.organization.description}
-                            </Typography>
-                        </Fragment>
-                    }
+                    <ContactInfo org={props.organization} />
                 </Paper>
-            </StyledBadge>
-            <Paper className={classes.paper}>
-                <ContactInfo org={props.organization} />
-            </Paper>
-            {
-                props.organization.tags &&
-                <Paper className={classes.paper}>
-                    <Chip 
-                        label={props.organization.tags.length ? 'Actions:' : 'No actions yet'} 
-                        className={classes.chip} 
-                        variant="outlined" 
-                    />
-                    {
-                        props.organization.tags.map((tag, i) => (
-                            <Chip key={`${tag}-${i}`} label={tag} className={classes.chip} />
-                        ))
-                    }
-                </Paper>
-            }
-            <div className={classes.backButtonContainer}>
-                <Button variant="outlined" size="small" className={classes.backButton} component={RouterLink} to="/">
-                    <BackIcon className={classes.backIcon} />
-                    Back to search
-                </Button>
-            </div>
-        </Container>
-    )
+                {
+                    props.organization.tags &&
+                    <Paper className={classes.paper}>
+                        <Chip 
+                            label={props.organization.tags.length ? 'Actions:' : 'No actions yet'} 
+                            className={classes.chip} 
+                            variant="outlined" 
+                        />
+                        {
+                            props.organization.tags.map((tag, i) => (
+                                <Chip key={`${tag}-${i}`} label={tag} className={classes.chip} />
+                            ))
+                        }
+                    </Paper>
+                }
+                <div className={classes.backButtonContainer}>
+                    <Button variant="outlined" size="small" className={classes.backButton} component={RouterLink} to="/">
+                        <BackIcon className={classes.backIcon} />
+                        Back to search
+                    </Button>
+                </div>
+            </Container>
+        )
+    }
 
     const renderEditOrgFab = () => (
         <Fab
