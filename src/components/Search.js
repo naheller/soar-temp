@@ -154,7 +154,7 @@ const Search = (props) => {
                     </div>
                     {renderTags()}
                 </Grid>
-                <OrganizationTable orgs={getFilteredOrgs()} />
+                <OrganizationTable orgs={getFilteredOrgs()} orgsLoaded={props.orgsLoaded} />
             </Typography>
         </Container>
     )

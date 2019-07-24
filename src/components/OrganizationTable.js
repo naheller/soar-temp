@@ -58,7 +58,7 @@ const OrganizationTable = (props) => {
                         <TableRow>
                             <TableCell align="left">
                                 <Typography className={classes.italic}>
-                                    No results match your search terms
+                                    {props.orgsLoaded ? 'No results match your search terms' : 'Loading...'}
                                 </Typography>
                             </TableCell>
                         </TableRow>
